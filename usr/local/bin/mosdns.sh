@@ -403,7 +403,7 @@ service_status() {
 
     mosdns_port=$(grep -m 1 "listen:.*:[0-9]\+" "$mosdns_dir/config.yaml" | awk -F':' '{print $NF}')
     # Default port if not modified in calee/mosdns:/etc/mosdns/config.yaml
-    : "${mosdns_port:=5353}"
+    : "${mosdns_port:=53}"
 
     for domain in "baidu.com" "example.org"; do
         if ! dig @127.0.0.1 -p "$mosdns_port" "$domain" +short >/dev/null 2>&1; then
